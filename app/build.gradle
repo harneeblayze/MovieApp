@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "ng.com.movielist"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":core")
+    implementation project(":movie")
+    implementation Libraries.kotlinStdLib
+    implementation Libraries.appCompat
+    implementation Libraries.ktxCore
+    implementation Libraries.retrofitGson
+    implementation Libraries.retrofitRxjava
+    implementation Libraries.retrofit
+    implementation Libraries.dagger
+    implementation Libraries.daggerSupportAndroid
+    implementation Libraries.daggerAndroid
+    implementation Libraries.constraintLayout
+    implementation Libraries.designLibary
+
+    kapt Libraries.daggerCompiler
+    kapt Libraries.daggerAndroidCompiler
+    testImplementation TestLibraries.junit4
+    androidTestImplementation TestLibraries.testRunner
+    androidTestImplementation TestLibraries.espresso
+}

@@ -1,0 +1,61 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled true
+    }
+
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":core")
+    implementation Libraries.kotlinStdLib
+    implementation Libraries.appCompat
+    implementation Libraries.ktxCore
+    implementation Libraries.retrofitGson
+    implementation Libraries.retrofitRxjava
+    implementation Libraries.retrofit
+    implementation Libraries.dagger
+    implementation Libraries.daggerSupportAndroid
+    implementation Libraries.daggerAndroid
+    implementation Libraries.constraintLayout
+    implementation Libraries.rxandroid
+    implementation Libraries.lifecycle
+    implementation Libraries.glide
+
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    kapt Libraries.daggerCompiler
+    kapt Libraries.glideCompiler
+    kapt Libraries.daggerAndroidCompiler
+    testImplementation TestLibraries.junit4
+    androidTestImplementation TestLibraries.testRunner
+    androidTestImplementation TestLibraries.espresso
+}
